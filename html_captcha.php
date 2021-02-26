@@ -1,28 +1,40 @@
-<?php session_start(); ?>
+<?php
+session_start();
+include('captcha.php');
+if(isset($_POST['submit'])){
+    if ($_POST["vercode"] == $_SESSION["vercode"])  
+    {
+        echo "<script>alert('Data added Successfully');</script>" ;
+    } 
+    else if($_POST["vercode"] != $_SESSION["vercode"] OR $_SESSION["vercode"] =='')
+    {
+        echo "<script>alert('Incorrect verification code');</script>" ;
+    }   
+    // var_dump($_POST["vercode"], 'post');
+    // echo "<br>";
+    // var_dump($_SESSION["vercode"],'session');
+unset($_SESSION["vercode"]);
+}
+?>
 <!Doctype html>
 <html>
     <head>
-        <title>Php assignment</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Captcha Image Verification</title>
         <link rel="stylesheet" type="text/css" href="css/captcha.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     </head>
-    <body>
 
-<?php
-// session_start();
-if(isset($_POST['submit'])){
-// check user answer is equal to session captcha code
-    if($_SESSION['captcha'] !== $_POST['captcha']){
-    echo '<div class="success_message">Captcha code is right.</div>';
-    }
-    else{
-    echo '<div class="error_message">Invalid captcha code.</div>';
-    }
-}
-?>
-        <form method="post">       
-            <input type="text" name="captcha" placeholder="Enter Captcha..">
-            <input type="submit" name="captcha" placeholder="SUBMIT">
+    <body>
+        <form method="post">
+        <table>
+            <tr>
+            <td><input type="text" name="vercode" placeholder="Enter Verification code" required="required" />&nbsp;</td>
+            </tr>
+            <tr>
+            <td><input type="submit" name="submit" value="Submit"/></td>
+            </tr>
+        </table>
         </form>
     </body>
-</html>
+</html> 
