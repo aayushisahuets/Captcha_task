@@ -1,6 +1,5 @@
 <?php
 session_start();
-include('captcha.php');
 if(isset($_POST['submit'])){
     if ($_POST["vercode"] == $_SESSION["vercode"])  
     {
@@ -15,7 +14,8 @@ if(isset($_POST['submit'])){
     // var_dump($_SESSION["vercode"],'session');
 unset($_SESSION["vercode"]);
 }
-?>
+include('captcha.php');
+?> 
 <!Doctype html>
 <html>
     <head>

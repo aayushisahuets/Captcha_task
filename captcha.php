@@ -8,6 +8,5 @@
                             );
     $randomImage = rand(0, (count($show_images) - 1));
         echo '<img src="' . $show_images[$randomImage]['path'] . '" width="150" height="60" class="captcha_view" id="captcha_view">';
-                // header("refresh: 10"); 
     $_SESSION["vercode"] = $show_images[$randomImage]['text']; 
 ?>
