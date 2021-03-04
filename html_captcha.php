@@ -9,7 +9,10 @@ if(isset($_POST['submit'])){
     {
         echo "<script>alert('Incorrect verification code');</script>" ;
     }   
-    unset($_SESSION["vercode"]);
+    // var_dump($_POST["vercode"], 'post');
+    // echo "<br>";
+    // var_dump($_SESSION["vercode"],'session');
+unset($_SESSION["vercode"]);
 }
 include('captcha.php');
 ?> 
