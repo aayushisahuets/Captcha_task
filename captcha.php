@@ -12,25 +12,36 @@ if (isset($_POST['input_value']) > 0)
 <style type="text/css">
     <?php include 'css/generate_captcha.css'; ?>
 </style>
-<script>
-    function reload_captcha() {
-        // var xhttp = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-        var xhttp =  new XMLHttpRequest();
-        xhttp.open("POST", "./show_captcha.php", true);//specifies the request
-        xhttp.send();//send the request to the server
-        // Defines a function to be called when the readyState property changes
-        xhttp.onreadystatechange = function()
-        {
-            // request finished and response is ready(4) & "OK"(200)
-            if (this.readyState == 4 && this.status == 200)
-            {
-                document.getElementsByClassName("captchaFront")[0].innerHTML = '<img src="./show_captcha.php" />';
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+    //change CAPTCHA on each click or on refreshing page
+        jQuery("#captcha_generator").click(function() {
+            document.getElementById("captchaFront").innerHTML = '<img src="show_captcha.php"/>'
+        });
+
+        //validation function
+        jQuery('#submit_value').click(function() {
+            var name = jQuery("#input_id").val();
+
+            if (name == '') {
+                alert("Fill All Fields");
             }
-        }
-    }
-    window.load = reload_captcha();
+            //validating CAPTCHA with user input text
+            else { 
+                var dataString = 'input_value=' + input_value;
+                jQuery.ajax({
+                    type: "POST",
+                    url: "show_captcha.php",
+                    data: dataString,
+                });
+            }
+        });
+    });
 </script>
-<!Doctype html>
+
+<!Doctype html> 
 <html>
     <head>
         <title>Custom Captcha Verification</title>
@@ -42,23 +53,21 @@ if (isset($_POST['input_value']) > 0)
         <table>
             <tr>
                 <td>
-                    <div style='margin-top:200px' class="captchaFront"></div><br><br>
+                    <div style='margin-top:200px' class="captchaFront" id="captchaFront"><img src="show_captcha.php"/></div><br><br>
                     </div> 
                 </td>
             </tr>
 
             <tr>
             <td class = "button_color">
-                <button type="button" class="inner_button" id="captcha_generator" name="refresh_button" onclick="return reload_captcha();">Refresh
-                        <i class="fa fa-refresh" style="font-size:24px"></i>
-                </button><br><br>
+                <button type="button" class="inner_button" id="captcha_generator" name="refresh_button">Refresh<i class="fa fa-refresh" style="font-size:24px"></i></button><br><br>
                 <div><?php echo $msg; ?></div> 
             </td>
             </tr>
 
             <tr>
-            <td><input type="text" name="input_value" placeholder="Enter Verification code" required /></td>
-            <td><input type="submit" name="submit" value="Submit"/>
+            <td><input type="text"  id="input_id" name="input_value" placeholder="Enter Verification code" /></td>
+            <td><input type="submit" id="submit_value" name="submit" value="Submit"/>
             </tr>   
         </table>
         </form>

@@ -1,7 +1,7 @@
 body{ 
-        display:flex;
-        flex-direction:column; 
-        align-items: center; 
+    display:flex;
+    flex-direction:column; 
+    align-items: center; 
 }
 .inner_button{
     background-color: rgb(204, 255, 255);
@@ -19,7 +19,7 @@ input[type=text]{
     background-color: whitesmoke;
 }
 input[type=submit]{
-  background-color: #4eb50d;
+    background-color: #4eb50d;
     margin-top: 15px;
     height: 40px;
     width: 90px;
