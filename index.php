@@ -29,10 +29,10 @@ include('captcha.php');
         <form method="post">
         <table>
             <tr>
-            <td><input type="text" name="vercode" placeholder="Enter Verification code" required="required" />&nbsp;</td>
+            <td><input type="text" name="vercode" placeholder="Enter Verification code" autocomplete="off" required="required" />&nbsp;</td>
             </tr>
             <tr>
-            <td><input type="submit" name="submit" value="Submit"/></td>
+            <td><input type="submit" name="submit" value="Submit" required /></td>
             </tr>
         </table>
         </form>
