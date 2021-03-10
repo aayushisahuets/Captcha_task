@@ -66,8 +66,8 @@ if (isset($_POST['input_value']) > 0)
             </tr>
 
             <tr>
-            <td><input type="text"  id="input_id" name="input_value" placeholder="Enter Verification code" /></td>
-            <td><input type="submit" id="submit_value" name="submit" value="Submit"/>
+            <td><input type="text"  id="input_id" name="input_value" placeholder="Enter Verification code" autocomplete="off" /></td>
+            <td><input type="submit" id="submit_value" name="submit" value="Submit" required/>
             </tr>   
         </table>
         </form>
