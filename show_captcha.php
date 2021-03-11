@@ -1,3 +1,4 @@
+<!-- Here is the logic for the dynamic images generate -->
 <?php 
 session_start(); 
 // Generate a random number 

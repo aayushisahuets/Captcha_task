@@ -1,3 +1,4 @@
+<!-- This is the html file of the captcha(dynamic images generate) -> css/generate_captcha.css-> show_captcha.php  which is in the captcha_branch-->
 <?php
 session_start(); 
 $msg = ''; 
