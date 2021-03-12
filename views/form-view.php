@@ -9,6 +9,7 @@
     </head>
 
     <body>
+        <img src="<?php echo $captchaImg; ?>">
         <form method="post" action="submission.php">
         <table>
             <tr>
