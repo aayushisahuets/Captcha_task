@@ -1,3 +1,4 @@
+<!-- index page of the file in which random captcha image is display -->
 <?php
 session_start();
 if(isset($_POST['submit'])){
